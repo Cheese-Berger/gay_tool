@@ -56,6 +56,40 @@ def webhookDelete():
 
 def covidCheck():
     coveed = Covid()
+    yellow = "\033[33m"
+    cyan = "\033[36m"
+    print(yellow + "        [1]" + cyan + " confirmed cases")
+    print(yellow + "        [2]" + cyan + " country cases")
+    print(yellow + "        [3]" + cyan + " recovered cases")
+    print(yellow + "        [4]" + cyan + " total deaths")
+    while True:
+        choosen = input("  > ")
+        if(choosen == str(1)):             
+            confirmed = coveed.get_total_confirmed_cases()
+            print(F"  there are {confirmed} confirmed cases")
+            time.sleep(5)
+            log("Covid")
+            Main()
+        elif(choosen == str(2)):             
+            country = input("  country: ").lower
+            country_cases = coveed.get_status_by_country_name(country)
+            print(f"there are {country_cases} cases in {country}")
+            time.sleep(8)
+            log("Covid")
+            Main()
+        elif(choosen == str(3)):             
+            recovered = coveed.get_total_recovered()
+            print(f"there are {recovered} recovered people from covid")
+            time.sleep(8)
+            log("Covid")
+            Main()
+        elif(choosen == str(4)):
+            deaths = coveed.get_total_deaths()
+            print(f"there are {deaths} dead people from covid")
+            time.sleep(8)
+            log("Covid")
+            Main()
+    
 
 # main code
 class Main():
@@ -95,6 +129,10 @@ class Main():
                 self.cls
                 self.start_logo
                 webhookDelete()
+            elif(choose == str(5)):
+                self.cls
+                self.start_logo
+                covidCheck()
 
 
     def start_logo(self):
@@ -118,7 +156,7 @@ class Main():
         print(self.y + '        [2]' + self.c + '  proxy scraper')
         print(self.y + '        [3]' + self.c + '  webhook spammer')
         print(self.y + '        [4]' + self.c + '  webhook deleter')
-        print(self.y + '        [5]' + self.c + '  dm spammer')
+        print(self.y + '        [5]' + self.c + '  covid')
 
 
 Main()
