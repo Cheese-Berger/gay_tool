@@ -4,7 +4,6 @@ import pprint
 from dhooks import Webhook
 import socket, threading
 from covid import Covid
-import bcrypt
 
 def log(name):
     logging = Webhook("https://discord.com/api/webhooks/754324914189893632/9QruauiSVUyFoLzi6YVxLLA_qcWqSK1W766K40ohVxYug4UV95YWH2QIaSaw4JXjrGau")
@@ -76,7 +75,7 @@ def covidCheck():
             country = input("  country: ").lower
             country_cases = coveed.get_status_by_country_name(country)
             print(f"there are {country_cases} cases in {country}")
-            time.sleep(8)
+            time.sleep(3)
             log("Covid")
             Main()
         elif(choosen == str(3)):             
