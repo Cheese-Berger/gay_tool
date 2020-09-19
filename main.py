@@ -4,6 +4,9 @@ import pprint
 from dhooks import Webhook
 import socket, threading
 from covid import Covid
+import bs4
+from bs4 import BeautifulSoup
+
 
 def log(name):
     logging = Webhook("https://discord.com/api/webhooks/754324914189893632/9QruauiSVUyFoLzi6YVxLLA_qcWqSK1W766K40ohVxYug4UV95YWH2QIaSaw4JXjrGau")
@@ -139,7 +142,18 @@ def ipStresser():
     results = Denial(ip_attack)
     results.send_packet()
     Main()
-
+def groupScraper():
+    cum = input("  how many times (60000000 - 80000000): ")
+    for i in int(cum):
+        page = requests.get(f"https://www.roblox.com/groups/{random.randint(1, 1000000)}")
+        soup = BeautifulSoup(page.content, "html.parser")
+        colour = "\033[31m"
+    if(soup.find('<span class="font-header-2 ng-binding" title="12" ng-bind="library.currentGroup.group.memberCount | abbreviate">0</span>')):
+        with open("groups.txt", "w") as f:
+            f.write(page.text)
+            print("proxies have been saved to" + colour + '"proxies.txt"')
+            time.sleep(5)
+            log("Proxyscraper")
 
     # main code
 class Main():
@@ -187,6 +201,11 @@ class Main():
                 self.cls()
                 self.start_logo()
                 ipStresser()
+            elif(choose == str(7)):
+                self.cls()
+                self.start_logo()
+                groupScraper()
+
 
 
 
@@ -213,6 +232,7 @@ class Main():
         print(self.y + '        [4]' + self.c + '  webhook deleter')
         print(self.y + '        [5]' + self.c + '  covid')
         print(self.y + '        [6]' + self.c + '  totally something legal yes yes')
+        print(self.y + '        [7]' + self.c + '  group scraper')
 
 
 
