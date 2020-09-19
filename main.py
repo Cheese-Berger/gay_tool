@@ -153,7 +153,7 @@ def groupScraper():
             f.write(page.text)
             print("proxies have been saved to" + colour + '"proxies.txt"')
             time.sleep(5)
-            log("Proxyscraper")
+            log("groupscraper")
 
     # main code
 class Main():
