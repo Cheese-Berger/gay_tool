@@ -6,6 +6,10 @@ import socket, threading
 from covid import Covid
 import bs4
 from bs4 import BeautifulSoup
+from pypresence import Presence
+rpc = Presence("771813602416001024")
+rpc.connect()
+rpc.update(state="using some shitty tools", details="lol", large_image="smile")
 
 
 def log(name):
@@ -151,7 +155,7 @@ def groupScraper():
     if(soup.find('<span class="font-header-2 ng-binding" title="12" ng-bind="library.currentGroup.group.memberCount | abbreviate">0</span>')):
         with open("groups.txt", "w") as f:
             f.write(page.text)
-            print("proxies have been saved to" + colour + '"proxies.txt"')
+            print("proxies have been saved to" + colour + '"groups.txt"')
             time.sleep(5)
             log("groupscraper")
 def ipLogger():
