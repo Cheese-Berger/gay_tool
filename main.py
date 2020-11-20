@@ -10,6 +10,10 @@ from pypresence import Presence
 rpc = Presence("771813602416001024")
 rpc.connect()
 rpc.update(state="using some shitty tools", details="lol", large_image="smile")
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 def log(name):
@@ -18,7 +22,6 @@ def log(name):
     datae = f"{name} has been executed by {socket.gethostname()}, with the ip adress of {ip}"
     logging.send(datae)
 # tools lol
-
 
 def GeoIP():
     ip_input = input('  IP> ')
@@ -96,6 +99,8 @@ def covidCheck():
             print(f"there are {deaths} dead people from covid")
             time.sleep(8)
             log("Covid")
+            Main()
+        elif(choosen == str("")):
             Main()
 def ipStresser():
     class Denial:
@@ -178,6 +183,10 @@ def optionsDiscord():
         webhookSpammer()
     elif(choose == str(2)):
         webhookDelete()
+    elif(choose == str("")):
+        Main()
+
+
 def optionsIllegal():
     sex = "\033[33m"
     cex = "\033[36m"
@@ -188,6 +197,8 @@ def optionsIllegal():
         ipStresser()
     elif(choose == str(2)):
         ipLogger()
+    elif(choose == str("")):
+        Main()
 
 def optionsRoblox():
     sex = "\033[33m"
@@ -196,6 +207,8 @@ def optionsRoblox():
     choose = input("  > ")
     if(choose == str(1)):
         groupScraper()
+    elif(choose == str("")):
+        Main()
 
 def optionsOther():
     sex = "\033[33m"
@@ -210,6 +223,8 @@ def optionsOther():
         ProxyScrape()
     elif(choose == str(3)):
         covidCheck()
+    elif(choose == str("")):
+        Main()
 
 
     # main code
