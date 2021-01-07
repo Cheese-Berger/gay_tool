@@ -7,9 +7,8 @@ from covid import Covid
 import bs4
 from bs4 import BeautifulSoup
 from pypresence import Presence
-rpc = Presence("771813602416001024")
-rpc.connect()
-rpc.update(state="using some shitty tools", details="lol", large_image="smile")
+import wikipedia
+import shutil
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -75,20 +74,20 @@ def covidCheck():
     print(yellow + "        [4]" + cyan + " total deaths")
     while True:
         choosen = input("  > ")
-        if(choosen == str(1)):             
+        if(choosen == str(1)):
             confirmed = coveed.get_total_confirmed_cases()
             print(F"  there are {confirmed} confirmed cases")
             time.sleep(5)
             log("Covid")
             Main()
-        elif(choosen == str(2)):             
+        elif(choosen == str(2)):
             country = input("  country: ").lower
             country_cases = coveed.get_status_by_country_name(country)
             print(f"there are {country_cases} cases in {country}")
             time.sleep(3)
             log("Covid")
             Main()
-        elif(choosen == str(3)):             
+        elif(choosen == str(3)):
             recovered = coveed.get_total_recovered()
             print(f"there are {recovered} recovered people from covid")
             time.sleep(8)
@@ -109,7 +108,7 @@ def ipStresser():
             self.connection = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.connection.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             self.host = host
-            self.port = 80 
+            self.port = 80
             self.duration = 0
             self.bytes = random._urandom(1024)
             self.sent = 0
@@ -185,6 +184,35 @@ def optionsDiscord():
         webhookDelete()
     elif(choose == str("")):
         Main()
+def wikipediaSearch():
+    wikipedia.search()
+def SmoothTextures():
+    print("you need to give the roblox version")
+    version = input("> ")
+
+    path = f"C:/Users/pchel/AppData/Local/Roblox/Versions/{version}/PlatformContent/pc/textures"
+
+    def rm(filename):
+        shutil.rmtree(f'{path}/{filename}')
+    rm("aluminum")
+    rm("brick")
+    rm("cobblestone")
+    rm("concrete")
+    rm("diamondplate")
+    rm("fabric")
+    rm("glass")
+    rm("granite")
+    rm("grass")
+    rm("marble")
+    rm("metal")
+    rm("pebble")
+    rm("plastic")
+    rm("rust")
+    rm("sand")
+    rm("slate")
+    rm("wood")
+    rm("woodplanks")
+    Main()
 
 
 def optionsIllegal():
@@ -204,9 +232,12 @@ def optionsRoblox():
     sex = "\033[33m"
     cex = "\033[36m"
     print(sex + '        [1]' + cex + '  group scraper (BETA) ')
+    print(sex + '        [2]' + cex + '  auto smooth textures')
     choose = input("  > ")
     if(choose == str(1)):
         groupScraper()
+    elif(choose == str(2)):
+        SmoothTextures()
     elif(choose == str("")):
         Main()
 
@@ -225,6 +256,10 @@ def optionsOther():
         covidCheck()
     elif(choose == str("")):
         Main()
+def drp():
+    rpc = Presence("771813602416001024")
+    rpc.connect()
+    rpc.update(state="using some shitty tools", details="lol", large_image="smile")
 
 
     # main code
@@ -251,7 +286,7 @@ class Main():
             choose = input(str("  > "  ))
             if(choose == str(1)):
                 self.cls()
-                self.start_logo()               
+                self.start_logo()
                 optionsDiscord()
             elif(choose == str(2)):
                 self.cls()
@@ -265,6 +300,8 @@ class Main():
                 self.cls()
                 self.start_logo()
                 optionsOther()
+            elif(choose == str(5)):
+                drp()
 
 
     def start_logo(self):
@@ -272,17 +309,17 @@ class Main():
         colors = [36, 32, 34, 35, 31, 37]
         x = """
 
-      ___           ___           ___                    ___           ___           ___           ___       ___     
-     /\  \         /\  \         |\__\                  /\  \         /\  \         /\  \         /\__\     /\  \    
-    /::\  \       /::\  \        |:|  |                 \:\  \       /::\  \       /::\  \       /:/  /    /::\  \   
-   /:/\:\  \     /:/\:\  \       |:|  |                  \:\  \     /:/\:\  \     /:/\:\  \     /:/  /    /:/\ \  \  
-  /:/  \:\  \   /::\~\:\  \      |:|__|__                /::\  \   /:/  \:\  \   /:/  \:\  \   /:/  /    _\:\~\ \  \ 
+      ___           ___           ___                    ___           ___           ___           ___       ___
+     /\  \         /\  \         |\__\                  /\  \         /\  \         /\  \         /\__\     /\  \
+    /::\  \       /::\  \        |:|  |                 \:\  \       /::\  \       /::\  \       /:/  /    /::\  \
+   /:/\:\  \     /:/\:\  \       |:|  |                  \:\  \     /:/\:\  \     /:/\:\  \     /:/  /    /:/\ \  \
+  /:/  \:\  \   /::\~\:\  \      |:|__|__                /::\  \   /:/  \:\  \   /:/  \:\  \   /:/  /    _\:\~\ \  \
  /:/__/_\:\__\ /:/\:\ \:\__\     /::::\__\              /:/\:\__\ /:/__/ \:\__\ /:/__/ \:\__\ /:/__/    /\ \:\ \ \__\
  \:\  /\ \/__/ \/__\:\/:/  /    /:/~~/~                /:/  \/__/ \:\  \ /:/  / \:\  \ /:/  / \:\  \    \:\ \:\ \/__/
-  \:\ \:\__\        \::/  /    /:/  /                 /:/  /       \:\  /:/  /   \:\  /:/  /   \:\  \    \:\ \:\__\  
-   \:\/:/  /        /:/  /     \/__/                  \/__/         \:\/:/  /     \:\/:/  /     \:\  \    \:\/:/  /  
-    \::/  /        /:/  /                                            \::/  /       \::/  /       \:\__\    \::/  /   
-     \/__/         \/__/                                              \/__/         \/__/         \/__/     \/__/    
+  \:\ \:\__\        \::/  /    /:/  /                 /:/  /       \:\  /:/  /   \:\  /:/  /   \:\  \    \:\ \:\__\
+   \:\/:/  /        /:/  /     \/__/                  \/__/         \:\/:/  /     \:\/:/  /     \:\  \    \:\/:/  /
+    \::/  /        /:/  /                                            \::/  /       \::/  /       \:\__\    \::/  /
+     \/__/         \/__/                                              \/__/         \/__/         \/__/     \/__/
 
         """
 
@@ -294,7 +331,8 @@ class Main():
         print(self.y + '        [2]' + self.c + '  roblox tools')
         print(self.y + '        [3]' + self.c + '  ddos tools')
         print(self.y + '        [4]' + self.c + '  other tools')
-        
+        print('')
+        print(self.y + '        [5]' + self.c + '  discord rich presece')
 
 
 
